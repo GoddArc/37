@@ -96,23 +96,40 @@
         '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
     }
 
-    function handleNo() {
-     const messages = [
-    "That's illegal in at least 3 dimensions.",
-    "37 is crying now. Hope you're happy.",
-    "What did 37 ever do to you?",
-    "Bold move. Let’s see how that plays out.",
-    "Are you sure? The Council of Prime Numbers is watching.",
-    "The sacred circle has been broken.",
-    "😱 You just triggered a math paradox.",
-    "This is how number wars start.",
-    "Unsubscribed from your reality.",
-    "Even Chuck Norris includes 37."
-  ];
+    <script>
+  let noClicked = false;
 
-  const msg = messages[Math.floor(Math.random() * messages.length)];
-  document.getElementById("response").innerHTML = `<p>${msg}</p>`;
-}
+  function handleYes() {
+    document.getElementById("response").innerHTML = 
+      '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
+  }
+
+  function handleNo() {
+    if (noClicked) return;
+
+    const messages = [
+      "That's illegal in at least 3 dimensions.",
+      "37 is crying now. Hope you're happy.",
+      "What did 37 ever do to you?",
+      "Bold move. Let’s see how that plays out.",
+      "Are you sure? The Council of Prime Numbers is watching.",
+      "The sacred circle has been broken.",
+      "😱 You just triggered a math paradox.",
+      "This is how number wars start.",
+      "Unsubscribed from your reality.",
+      "Even Chuck Norris includes 37."
+    ];
+
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    document.getElementById("response").innerHTML = `<p>${msg}</p>`;
+
+    // Disable future clicks on "No"
+    noClicked = true;
+    document.querySelector(".no-btn").disabled = true;
+    document.querySelector(".no-btn").style.opacity = 0.5;
+    document.querySelector(".no-btn").style.cursor = "not-allowed";
+  }
+</script>
   </script>
 </body>
 </html>
