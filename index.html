@@ -1,78 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Is 37 in Your Set?</title>
   <style>
+    :root {
+      --bg: #121212;
+      --card-bg: #1e1e1e;
+      --text: #ffffff;
+      --green: #28a745;
+      --red: #dc3545;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 1rem;
     }
 
     .card {
-      background: white;
+      background-color: var(--card-bg);
       padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      max-width: 400px;
+      width: 100%;
       text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
     }
 
     button {
-      margin: 10px;
-      padding: 10px 20px;
       font-size: 1.1rem;
+      margin: 0.5rem;
+      padding: 0.7rem 1.5rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      background-color: #4CAF50;
-      color: white;
+      transition: background-color 0.3s ease;
+      color: #fff;
     }
 
-    button.no {
-      background-color: #f44336;
+    .yes-btn {
+      background-color: var(--green);
+    }
+
+    .no-btn {
+      background-color: var(--red);
+    }
+
+    button:hover {
+      filter: brightness(1.2);
     }
 
     .response {
-      margin-top: 20px;
+      margin-top: 1.5rem;
       font-size: 1.2rem;
+      min-height: 2rem;
     }
 
-    input {
-      padding: 8px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 1rem;
+    .cookie {
+      font-size: 2.5rem;
+      display: inline-block;
+      animation: bounce 1s ease;
+    }
+
+    @keyframes bounce {
+      0%   { transform: scale(0); opacity: 0; }
+      60%  { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Is 37 in your set?</h1>
-    <button onclick="handleYes()">Yes</button>
-    <button class="no" onclick="handleNo()">No</button>
+    <button class="yes-btn" onclick="handleYes()">Yes</button>
+    <button class="no-btn" onclick="handleNo()">No</button>
     <div class="response" id="response"></div>
   </div>
 
   <script>
     function handleYes() {
-      document.getElementById('response').innerHTML = '🍪 Here’s a cookie!';
+      document.getElementById("response").innerHTML = 
+        '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
     }
 
     function handleNo() {
-      document.getElementById('response').innerHTML = `
-        <p>Why not?</p>
-        <input type="text" placeholder="Type your reason..." oninput="logReason(this.value)">
-      `;
-    }
-
-    function logReason(reason) {
-      console.log("User reason:", reason);
-      // You could later send this to a server if needed
+      document.getElementById("response").innerHTML = 
+        "<p>Why not? You should include 37.</p>";
     }
   </script>
 </body>
