@@ -63,6 +63,11 @@
       filter: brightness(1.2);
     }
 
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .response {
       margin-top: 1.5rem;
       font-size: 1.2rem;
@@ -91,56 +96,49 @@
   </div>
 
   <script>
+    let alreadyClicked = false;
+
     function handleYes() {
+      if (alreadyClicked) return;
+      alreadyClicked = true;
+
       document.getElementById("response").innerHTML = 
         '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
+
+      disableButtons();
     }
 
-    <script>
-  let alreadyClicked = false;
+    function handleNo() {
+      if (alreadyClicked) return;
+      alreadyClicked = true;
 
-  function handleYes() {
-    if (alreadyClicked) return;
-    alreadyClicked = true;
+      const messages = [
+        "That's illegal in at least 3 dimensions.",
+        "37 is crying now. Hope you're happy.",
+        "What did 37 ever do to you?",
+        "Bold move. Let’s see how that plays out.",
+        "Are you sure? The Council of Prime Numbers is watching.",
+        "The sacred circle has been broken.",
+        "😱 You just triggered a math paradox.",
+        "This is how number wars start.",
+        "Unsubscribed from your reality.",
+        "Even Chuck Norris includes 37."
+      ];
 
-    document.getElementById("response").innerHTML = 
-      '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById("response").innerHTML = `<p>${msg}</p>`;
 
-    disableButtons();
-  }
+      disableButtons();
+    }
 
-  function handleNo() {
-    if (alreadyClicked) return;
-    alreadyClicked = true;
-
-    const messages = [
-      "That's illegal in at least 3 dimensions.",
-      "37 is crying now. Hope you're happy.",
-      "What did 37 ever do to you?",
-      "Bold move. Let’s see how that plays out.",
-      "Are you sure? The Council of Prime Numbers is watching.",
-      "The sacred circle has been broken.",
-      "😱 You just triggered a math paradox.",
-      "This is how number wars start.",
-      "Unsubscribed from your reality.",
-      "Even Chuck Norris includes 37."
-    ];
-
-    const msg = messages[Math.floor(Math.random() * messages.length)];
-    document.getElementById("response").innerHTML = `<p>${msg}</p>`;
-
-    disableButtons();
-  }
-
-  function disableButtons() {
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach(btn => {
-      btn.disabled = true;
-      btn.style.opacity = 0.5;
-      btn.style.cursor = "not-allowed";
-    });
-  }
-</script>
+    function disableButtons() {
+      const buttons = document.querySelectorAll("button");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = 0.5;
+        btn.style.cursor = "not-allowed";
+      });
+    }
   </script>
 </body>
 </html>
