@@ -97,9 +97,22 @@
     }
 
     function handleNo() {
-      document.getElementById("response").innerHTML = 
-        "<p>Why not? You should include 37.</p>";
-    }
+     const messages = [
+    "That's illegal in at least 3 dimensions.",
+    "37 is crying now. Hope you're happy.",
+    "What did 37 ever do to you?",
+    "Bold move. Let’s see how that plays out.",
+    "Are you sure? The Council of Prime Numbers is watching.",
+    "The sacred circle has been broken.",
+    "😱 You just triggered a math paradox.",
+    "This is how number wars start.",
+    "Unsubscribed from your reality.",
+    "Even Chuck Norris includes 37."
+  ];
+
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+  document.getElementById("response").innerHTML = `<p>${msg}</p>`;
+}
   </script>
 </body>
 </html>
