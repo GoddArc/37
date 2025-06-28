@@ -97,15 +97,21 @@
     }
 
     <script>
-  let noClicked = false;
+  let alreadyClicked = false;
 
   function handleYes() {
+    if (alreadyClicked) return;
+    alreadyClicked = true;
+
     document.getElementById("response").innerHTML = 
       '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
+
+    disableButtons();
   }
 
   function handleNo() {
-    if (noClicked) return;
+    if (alreadyClicked) return;
+    alreadyClicked = true;
 
     const messages = [
       "That's illegal in at least 3 dimensions.",
@@ -123,11 +129,16 @@
     const msg = messages[Math.floor(Math.random() * messages.length)];
     document.getElementById("response").innerHTML = `<p>${msg}</p>`;
 
-    // Disable future clicks on "No"
-    noClicked = true;
-    document.querySelector(".no-btn").disabled = true;
-    document.querySelector(".no-btn").style.opacity = 0.5;
-    document.querySelector(".no-btn").style.cursor = "not-allowed";
+    disableButtons();
+  }
+
+  function disableButtons() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      btn.style.opacity = 0.5;
+      btn.style.cursor = "not-allowed";
+    });
   }
 </script>
   </script>
