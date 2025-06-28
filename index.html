@@ -114,19 +114,34 @@
   let alreadyClicked = false;
 
   function handleYes() {
-    if (alreadyClicked) return;
-    alreadyClicked = true;
+  if (alreadyClicked) return;
+  alreadyClicked = true;
 
-    document.getElementById("response").innerHTML = `
-      <div>
-        <span class="cookie">🍪</span>
-        <p>Here’s a cookie!</p>
-        <button class="refresh-btn" onclick="refreshPage()">🔁 Try Again</button>
-      </div>
-    `;
+  const yesMessages = [
+    "🍪 Here’s a cookie! You've earned it.",
+    "You have been blessed by the Number Gods. 🙏",
+    "Welcome to the secret club of 37 appreciators.",
+    "Mmm... sweet numerological harmony.",
+    "You passed the vibe check. ✅",
+    "37 likes you back ❤️",
+    "🥳 That was the correct answer. Obviously.",
+    "You may now proceed with your destiny.",
+    "A golden prime star 🌟 has been added to your soul.",
+    "That’s what Pythagoras would’ve wanted."
+  ];
 
-    disableButtons();
-  }
+  const msg = yesMessages[Math.floor(Math.random() * yesMessages.length)];
+
+  document.getElementById("response").innerHTML = `
+    <div>
+      <span class="cookie">🍪</span>
+      <p>${msg}</p>
+      <button class="refresh-btn" onclick="refreshPage()">🔁 Try Again</button>
+    </div>
+  `;
+
+  disableButtons();
+}
 
   function handleNo() {
     if (alreadyClicked) return;
