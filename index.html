@@ -85,6 +85,21 @@
       60%  { transform: scale(1.2); opacity: 1; }
       100% { transform: scale(1); }
     }
+    .refresh-btn {
+  margin-top: 1.5rem;
+  background-color: #444;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-btn:hover {
+  background-color: #666;
+}
   </style>
 </head>
 <body>
@@ -96,49 +111,64 @@
   </div>
 
   <script>
-    let alreadyClicked = false;
+  let alreadyClicked = false;
 
-    function handleYes() {
-      if (alreadyClicked) return;
-      alreadyClicked = true;
+  function handleYes() {
+    if (alreadyClicked) return;
+    alreadyClicked = true;
 
-      document.getElementById("response").innerHTML = 
-        '<div><span class="cookie">🍪</span><p>Here’s a cookie!</p></div>';
+    document.getElementById("response").innerHTML = `
+      <div>
+        <span class="cookie">🍪</span>
+        <p>Here’s a cookie!</p>
+        <button class="refresh-btn" onclick="refreshPage()">🔁 Try Again</button>
+      </div>
+    `;
 
-      disableButtons();
-    }
+    disableButtons();
+  }
 
-    function handleNo() {
-      if (alreadyClicked) return;
-      alreadyClicked = true;
+  function handleNo() {
+    if (alreadyClicked) return;
+    alreadyClicked = true;
 
-      const messages = [
-        "That's illegal in at least 3 dimensions.",
-        "37 is crying now. Hope you're happy.",
-        "What did 37 ever do to you?",
-        "Bold move. Let’s see how that plays out.",
-        "Are you sure? The Council of Prime Numbers is watching.",
-        "The sacred circle has been broken.",
-        "😱 You just triggered a math paradox.",
-        "This is how number wars start.",
-        "Unsubscribed from your reality.",
-        "Even Chuck Norris includes 37."
-      ];
+    const messages = [
+      "That's illegal in at least 3 dimensions.",
+      "37 is crying now. Hope you're happy.",
+      "What did 37 ever do to you?",
+      "Bold move. Let’s see how that plays out.",
+      "Are you sure? The Council of Prime Numbers is watching.",
+      "The sacred circle has been broken.",
+      "😱 You just triggered a math paradox.",
+      "This is how number wars start.",
+      "Unsubscribed from your reality.",
+      "Even Chuck Norris includes 37."
+    ];
 
-      const msg = messages[Math.floor(Math.random() * messages.length)];
-      document.getElementById("response").innerHTML = `<p>${msg}</p>`;
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    document.getElementById("response").innerHTML = `
+      <p>${msg}</p>
+      <button class="refresh-btn" onclick="refreshPage()">🔁 Try Again</button>
+    `;
 
-      disableButtons();
-    }
+    disableButtons();
+  }
 
-    function disableButtons() {
-      const buttons = document.querySelectorAll("button");
-      buttons.forEach(btn => {
+  function disableButtons() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(btn => {
+      if (!btn.classList.contains("refresh-btn")) {
         btn.disabled = true;
         btn.style.opacity = 0.5;
         btn.style.cursor = "not-allowed";
-      });
-    }
-  </script>
+      }
+    });
+  }
+
+  function refreshPage() {
+    location.reload();
+  }
+</script>
+  
 </body>
 </html>
